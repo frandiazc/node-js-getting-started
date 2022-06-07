@@ -2,12 +2,12 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 //Usar express con la variable PORT
-express()
-express.get('/', function (req, res) {
+const app = express()
+app.get('/', function (req, res) {
   res.send('Hello World')
 })
 
-express.listen(PORT)
+app.listen(PORT)
 
 
   console.log('Hello World');
