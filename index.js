@@ -9,4 +9,4 @@ express()
   .get('/', (req, res) => res.render('pages/index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
-  alert("hola mundo");
+console.log("Hello World!");
