@@ -8,6 +8,24 @@ app.get('/', function (req, res) {
 })
 
 app.listen(PORT)
+var nodemailer = require('nodemailer');
+
+//Creamos el objeto de transporte
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'nodemailerherokufrandiazc@gmail.com',
+    pass: 'Minisdef01.'
+  }
+});
+var mensaje = "Esto es un mensaje de prueba";
+var mailOptions = {
+  from: 'nodemailerherokufrandiazc@gmail.com'
+  , to: 'franciscodiazcenteno@gmail.com'
+  , subject: 'Mensaje de prueba'
+  , text: mensaje
+};
+
 
 
   console.log('Hello World');
@@ -50,4 +68,19 @@ app.listen(PORT)
       // send a photo to the chat
       bot.sendPhoto(msg.chat.id, 'https://www.w3schools.com/css/img_forest.jpg');
     }
+    if (msg.text === 'send email') {
+      // send email
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+      bot.sendMessage(msg.chat.id, 'email sent');
+
+      
+    }
+
   });
+
