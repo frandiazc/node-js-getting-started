@@ -17,7 +17,12 @@ express()
   
   // Create a bot that uses 'polling' to fetch new updates
   const bot = new TelegramBot(token, {polling: true});
+  bot.onText(/ruca/, (msg, match) => {
+    // 'msg' is the received Message from Telegram
+    const chatId = msg.chat.id;
   
+    // send a message to the chat acknowledging receipt of their message
+    bot.sendMessage(chatId, 'Mi polla con peluca');
   // Matches "/echo [whatever]"
   bot.onText(/\/echo (.+)/, (msg, match) => {
     // 'msg' is the received Message from Telegram
