@@ -3,11 +3,11 @@ const path = require('path')
 const PORT = process.env.PORT || 5000
 //Usar express con la variable PORT
 express()
-app.get('/', function (req, res) {
+express.get('/', function (req, res) {
   res.send('Hello World')
 })
 
-app.listen(PORT)
+express.listen(PORT)
 
 
   console.log('Hello World');
