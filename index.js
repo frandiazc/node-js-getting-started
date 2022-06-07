@@ -9,6 +9,7 @@ express()
   .get('/', (req, res) => res.render('pages/index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
+  console.log('Hello World');
 
   const TelegramBot = require('node-telegram-bot-api');
 
