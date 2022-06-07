@@ -40,8 +40,12 @@ express()
   // Listen for any kind of message. There are different kinds of
   // messages.
   bot.on('message', (msg) => {
-    const chatId = msg.chat.id;
-  
-    // send a message to the chat acknowledging receipt of their message
-    bot.sendMessage(chatId, 'Received your message');
+    if (msg.text === 'hi') {
+      // send back "hi" to the chat
+      bot.sendMessage(msg.chat.id, 'hi');
+    }
+    if (msg.text === 'bye') {
+      // send a photo to the chat
+      bot.sendPhoto(msg.chat.id, 'https://www.w3schools.com/css/img_forest.jpg');
+    }
   });
