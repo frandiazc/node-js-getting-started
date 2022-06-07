@@ -23,6 +23,7 @@ express()
   
     // send a message to the chat acknowledging receipt of their message
     bot.sendMessage(chatId, 'Mi polla con peluca');
+  });
   // Matches "/echo [whatever]"
   bot.onText(/\/echo (.+)/, (msg, match) => {
     // 'msg' is the received Message from Telegram
