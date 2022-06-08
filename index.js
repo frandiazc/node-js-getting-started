@@ -14,13 +14,13 @@ var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'nodemailerherokufrandiazc@gmail.com',
-    pass: 'Minisdef01.'
+    user: 'nodemailerfrandiazc@gmail.com',
+    pass: 'sblybknftgysiknv'
   }
 });
 var mensaje = "Esto es un mensaje de prueba";
 var mailOptions = {
-  from: 'nodemailerherokufrandiazc@gmail.com'
+  from: 'nodemailerfrandiazc@gmail.com'
   , to: 'franciscodiazcenteno@gmail.com'
   , subject: 'Mensaje de prueba'
   , text: mensaje
