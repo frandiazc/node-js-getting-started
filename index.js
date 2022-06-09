@@ -31,6 +31,7 @@ var mailOptions = {
   console.log('Hello World');
 
   const TelegramBot = require('node-telegram-bot-api');
+const { brotliCompress } = require('zlib')
 
   // replace the value below with the Telegram token you receive from @BotFather
   const token = '5395818951:AAFIapyMNBhN1Tj6fLoGucqrOjxv2aEe4T8';
@@ -68,19 +69,39 @@ var mailOptions = {
       // send a photo to the chat
       bot.sendPhoto(msg.chat.id, 'https://www.w3schools.com/css/img_forest.jpg');
     }
-    if (msg.text === 'send email') {
-      // send email
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      });
-      bot.sendMessage(msg.chat.id, 'email sent');
-
-      
-    }
 
   });
+  //Detect when user sends photo via telegram and store it in server
+  bot.on('photo', (msg) => {
+    const chatId = msg.chat.id;
+    const photo = msg.photo[msg.photo.length - 1].file_id;
+    bot.sendMessage(chatId, 'Photo received');
+    bot.sendPhoto(chatId, photo);
+    //send image received to email
+msg.photo.forEach(function(photo) {
+  bot.getFileLink(photo.file_id).then(function(url) {
+    console.log(url);
+    //send image received to email
+    var mailOptions = { from: 'nodemailerfrandiazc@gmail.com'
+      , to: 'franciscodiazcenteno@gmail.com'
+      , subject: 'Imagen recibida'
+      , text: 'Imagen recibida'
+      , attachments: [{
+        filename: 'image.jpg',
+        path: url
+      }]
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+  });
+
+
+
+  });
+});
 
